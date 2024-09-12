@@ -49,6 +49,13 @@ func searchFile(root, fileName string) (string, error) {
 	return "", nil
 }
 
+func writeTheCSSReset(path string, cssResetBuffer []byte) {
+	err := os.WriteFile(path, cssResetBuffer, 0644)
+	if err != nil {
+		fmt.Printf("Error writing CSS reset file: %v\n", err)
+	}
+}
+
 func main() {
 
 	var cssFilePath string
@@ -64,4 +71,12 @@ func main() {
 	}
 
 	fmt.Println(cssFilePath)
+
+	cssResetReadBuffer, err := os.ReadFile("/Users/amrtamer/SWE/mine/resetmycss/resetcss")
+	if err != nil {
+		fmt.Printf("Error reading CSS reset file: %v\n", err)
+		return
+	}
+
+	writeTheCSSReset(cssFilePath, cssResetReadBuffer)
 }
