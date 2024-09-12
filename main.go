@@ -50,7 +50,17 @@ func searchFile(root, fileName string) (string, error) {
 }
 
 func writeTheCSSReset(path string, cssResetBuffer []byte) {
-	err := os.WriteFile(path, cssResetBuffer, 0644)
+
+	existingContent, err := os.ReadFile(path)
+	if err != nil {
+		fmt.Printf("Error reading existing file: %v\n", err)
+		return
+	}
+
+	combinedContent := append(existingContent, []byte("\n\n")...)
+	combinedContent = append(combinedContent, cssResetBuffer...)
+
+	err = os.WriteFile(path, combinedContent, 0644)
 	if err != nil {
 		fmt.Printf("Error writing CSS reset file: %v\n", err)
 	}
