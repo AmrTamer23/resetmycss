@@ -63,6 +63,8 @@ func writeTheCSSReset(path string, cssResetBuffer []byte) {
 	err = os.WriteFile(path, combinedContent, 0644)
 	if err != nil {
 		fmt.Printf("Error writing CSS reset file: %v\n", err)
+	} else {
+		fmt.Println(`CSS reset has been added to your project! 🎉`)
 	}
 }
 
@@ -83,8 +85,6 @@ func main() {
 			break
 		}
 	}
-
-	fmt.Println(cssFilePath)
 
 	execPath, err := os.Executable()
 	if err != nil {
