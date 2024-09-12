@@ -14,9 +14,13 @@ exec("go version", (error, _, __) => {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const goFilePath = path.join(__dirname, "main.go");
+const goFilePath = path.join(__dirname, "./resetcss");
 
-exec(`go run ${goFilePath}`, (error, stdout, stderr) => {
+const os = process.platform;
+
+const command = os === "win32" ? `${goFilePath}.exe` : goFilePath;
+
+exec(command, (error, stdout, stderr) => {
   if (error) {
     console.error(`Error: ${error.message}`);
     return;
