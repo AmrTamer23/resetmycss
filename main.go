@@ -86,9 +86,9 @@ func main() {
 
 	fmt.Println(cssFilePath)
 
-	cssResetReadBuffer, err := os.ReadFile("/Users/amrtamer/SWE/mine/resetmycss/resetcss")
-	if err != nil {
-		fmt.Printf("Error reading CSS reset file: %v\n", err)
+	cssResetReadBuffer, cssResetReadErr := os.ReadFile("/Users/amrtamer/SWE/mine/resetmycss/resetcss")
+	if cssResetReadErr != nil {
+		fmt.Printf("Error reading CSS reset file: %v\n", cssResetReadErr)
 		return
 	}
 
