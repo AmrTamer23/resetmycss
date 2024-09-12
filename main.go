@@ -62,7 +62,11 @@ func main() {
 
 	for i := 0; i < len(CSSFilesToLookFor); i++ {
 
-		var search, _ = searchFile(".", CSSFilesToLookFor[i])
+		var search, searchErr = searchFile(".", CSSFilesToLookFor[i])
+		if searchErr != nil {
+			fmt.Printf("Error reading CSS reset file: %v\n", searchErr)
+			return
+		}
 
 		if search != "" {
 			cssFilePath = search
