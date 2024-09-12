@@ -4,7 +4,7 @@ import { exec } from "child_process";
 import { fileURLToPath } from "url";
 import path from "path";
 
-exec("go version", (error, _, _) => {
+exec("go version", (error, _, __) => {
   if (error) {
     console.error(`Please install Go first!`);
     return;
