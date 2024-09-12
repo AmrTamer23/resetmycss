@@ -1,15 +1,15 @@
 {
   "name": "resetmycss",
   "version": "1.0.0",
+  "description": "A tool to reset the CSS for you project using Go and Node.js",
   "main": "index.js",
   "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "bin": {
     "resetmycss": "./index.js"
   },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "author": "amrtamer23",
-  "license": "ISC",
-  "description": ""
+  "license": "ISC"
 }
