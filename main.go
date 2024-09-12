@@ -15,7 +15,6 @@ var CSSFilesToLookFor = [...]string{
 }
 
 func searchFile(root, fileName string) (string, error) {
-
 	var foundPath string
 
 	err := filepath.WalkDir(root, func(path string, d os.DirEntry, err error) error {
@@ -39,22 +38,30 @@ func searchFile(root, fileName string) (string, error) {
 		return "", err
 	}
 
-	return foundPath, nil
+	if foundPath != "" {
+		absPath, err := filepath.Abs(foundPath)
+		if err != nil {
+			return "", err
+		}
+		return absPath, nil
+	}
+
+	return "", nil
 }
 
 func main() {
-	fmt.Println("Searching for CSS file")
+
+	var cssFilePath string
 
 	for i := 0; i < len(CSSFilesToLookFor); i++ {
 
-		fmt.Println("Searching for ", CSSFilesToLookFor[i])
-
 		var search, _ = searchFile(".", CSSFilesToLookFor[i])
 
-		fmt.Println(search)
-
 		if search != "" {
-			fmt.Println("Found")
+			cssFilePath = search
+			break
 		}
 	}
+
+	fmt.Println(cssFilePath)
 }
