@@ -86,7 +86,15 @@ func main() {
 
 	fmt.Println(cssFilePath)
 
-	cssResetReadBuffer, cssResetReadErr := os.ReadFile("/Users/amrtamer/SWE/mine/resetmycss/resetcss")
+	execPath, err := os.Executable()
+	if err != nil {
+		fmt.Printf("Error getting executable path: %v\n", err)
+		return
+	}
+	execDir := filepath.Dir(execPath)
+	resetCSSPath := filepath.Join(execDir, "resetcss")
+
+	cssResetReadBuffer, cssResetReadErr := os.ReadFile(resetCSSPath)
 	if cssResetReadErr != nil {
 		fmt.Printf("Error reading CSS reset file: %v\n", cssResetReadErr)
 		return
